@@ -15,12 +15,10 @@ require 'xmlsimple'
 	  first_api = get_api(1, 1, 8)
 	  res = RestClient.get(first_api)
 	  if(res.code == 200)
-	  	#<opt PAGE="1" PAGECOUNT="200" RECORDCOUNT="46374" TOTALPAGE="232">
+	  	#"RECORDCOUNT"=>"46399", "PAGECOUNT"=>"1", "PAGE"=>"1", "TOTALPAGE"=>"46399",
 	    rb = JSON.parse(res.body)
+	    puts rb
 	    total_page = rb["TOTALPAGE"].to_i / PAGE_COUNT
-	    if(rb["PAGE_COUNT"].to_i != PAGE_COUNT)
-	    	puts "ERROR : PAGE_COUNT #{rb["PAGE_COUNT"]} != Setting #{PAGE_COUNT}"
-	    end
 	  else
 	    puts "ERROR : #{first_api} #{res.code} #{res}"
 	  end
